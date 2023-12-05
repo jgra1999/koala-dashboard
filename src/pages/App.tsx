@@ -17,7 +17,7 @@ export default function App() {
 
 					<div className='flex flex-col items-center gap-y-4 w-full'>
 						<Link
-							to='/mantenimiento'
+							to='/catalogo'
 							className='w-full sm:w-2/4 lg:w-1/3 max-w-[430px] sm:max-w-none'
 						>
 							<button className='py-2 w-full bg-primary active:bg-orange-400 lg:hover:bg-orange-400 text-white font-bold text-xl rounded'>

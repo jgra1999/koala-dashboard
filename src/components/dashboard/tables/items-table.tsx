@@ -39,7 +39,7 @@ export function ItemTable({ data, header, tableName }: Props) {
 
 						<td>
 							<div className='flex gap-x-4'>
-								<Link to={`dashboard/marcas/editar/${item.id}`}>
+								<Link to={`editar/${item.id}`}>
 									<PencilIcon className='w-5 h-5 hover:stroke-primary' />
 								</Link>
 								<button onClick={() => handleDelete(tableName, item.id)}>

@@ -5,13 +5,13 @@ import type { Item } from '../../../types/database'
 import { ItemTable } from '../../../components/dashboard/tables/items-table'
 import { supabase } from '../../../supabase/client'
 
-export default function BrandsPage() {
+export default function CategoriesPage() {
 	const [data, setData] = useState<Item[]>([])
 	const thead = ['Nombre', 'Link', 'Acciones']
 
-	const fetchBrands = async () => {
+	const fetchCategories = async () => {
 		try {
-			const { data: brands, error } = await supabase.from('brands').select('*')
+			const { data: brands, error } = await supabase.from('categories').select('*')
 
 			if (error) console.log(error)
 			if (brands) setData(brands)
@@ -28,18 +28,18 @@ export default function BrandsPage() {
 		}
 	}
 	useEffect(() => {
-		fetchBrands()
+		fetchCategories()
 	}, [])
 
 	return (
 		<Layout>
-			<h1 className='text-4xl md:text-5xl font-medium'>Tabla de Marcas</h1>
+			<h1 className='text-4xl md:text-5xl font-medium'>Tabla de Categorías</h1>
 			<div className='mt-20'>
 				<Link
-					to='/dashboard/marcas/nueva'
+					to='/dashboard/categorias/nueva'
 					className='text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg px-5 py-2.5 me-2 mb-2 focus:outline-none'
 				>
-					Agregar Marca
+					Agregar Categoría
 				</Link>
 				<div className='relative overflow-x-auto shadow-md sm:rounded-lg mt-8'>
 					<ItemTable data={data} header={thead} tableName='brands' />

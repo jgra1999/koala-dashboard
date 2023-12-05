@@ -1,4 +1,9 @@
-export function ProductsTable() {
+import { Link } from 'react-router-dom'
+import type { Product } from '../../../types/database'
+import { EyeIcon, PencilIcon, TrashIcon } from '@heroicons/react/24/outline'
+import { deleteData } from '../../../utils/db'
+
+export function ProductsTable({ products }: { products: Product[] }) {
 	return (
 		<table className='w-full text-sm text-left rtl:text-right text-gray-500 '>
 			<thead className='text-xs text-white uppercase bg-primary'>
@@ -24,9 +29,35 @@ export function ProductsTable() {
 				</tr>
 			</thead>
 			<tbody>
-				{/* {products.map((product: Product) => (
-								<TableProduct product={product} key={product.id} />
-							))} */}
+				{products.map((product: Product) => (
+					<tr key={product.id}>
+						<th
+							scope='row'
+							className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap'
+						>
+							{product.name}
+						</th>
+						<td className='px-6 py-4'>
+							<img src={product.image_url_1} alt='' className='w-8' />
+						</td>
+						<td className='px-6 py-4'>{product.stock}</td>
+						<td className='px-6 py-4'>{product.category}</td>
+						<td className='px-6 py-4'>${product.price}</td>
+						<td className='px-6 py-4 text-right'>
+							<div className='flex gap-x-4'>
+								<Link to={`/dashboard/productos/${product.id}`}>
+									<EyeIcon className='w-5 h-5 hover:stroke-primary' />
+								</Link>
+								<Link to={`/dashboard/productos/editar/${product.id}`}>
+									<PencilIcon className='w-5 h-5 hover:stroke-primary' />
+								</Link>
+								<button onClick={() => deleteData('products', product.id)}>
+									<TrashIcon className='w-5 h-5 hover:stroke-primary' />
+								</button>
+							</div>
+						</td>
+					</tr>
+				))}
 			</tbody>
 		</table>
 	)
