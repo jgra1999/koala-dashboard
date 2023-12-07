@@ -11,6 +11,9 @@ import CategoriesPage from '../pages/dashboard/categorias'
 import AddCategoriesPage from '../pages/dashboard/categorias/nueva'
 import AddProductPage from '../pages/dashboard/productos/nuevo'
 import CatalogoPage from '../pages/catalogo'
+import BannersPage from '../pages/dashboard/banners'
+import EditBannerPage from '../pages/dashboard/banners/actualizar'
+import BannerViewPage from '../pages/dashboard/banners/overview'
 
 export const router = createHashRouter([
 	{
@@ -21,6 +24,7 @@ export const router = createHashRouter([
 		path: '/mantenimiento',
 		element: <MantenimientoPage />
 	},
+	/* Dashboard */
 	{
 		path: '/dashboard',
 		element: <DashboardPage />
@@ -61,6 +65,19 @@ export const router = createHashRouter([
 		path: '/dashboard/categorias/editar/:id',
 		element: <AddCategoriesPage />
 	},
+	{
+		path: '/dashboard/banners',
+		element: <BannersPage />
+	},
+	{
+		path: '/dashboard/banners/actualizar/:id',
+		element: <EditBannerPage />
+	},
+	{
+		path: '/dashboard/banners/overview/:id',
+		element: <BannerViewPage />
+	},
+	/* Catalogo */
 	{
 		path: '/catalogo',
 		element: <CatalogoPage />

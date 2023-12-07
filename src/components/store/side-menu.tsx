@@ -7,7 +7,7 @@ import { Fragment, useEffect, useState } from 'react'
 import { Item } from '../../types/database'
 import { supabase } from '../../supabase/client'
 
-export default function SideMenu() {
+export function SideMenu() {
 	const [open, setOpen] = useState(false)
 	const [data, setData] = useState<Item[]>([])
 
@@ -39,7 +39,7 @@ export default function SideMenu() {
 						leaveFrom='opacity-100'
 						leaveTo='opacity-0'
 					>
-						<div className='fixed inset-0 bg-darkGray bg-opacity-60 transition-opacity' />
+						<div className='fixed inset-0 transition-opacity' />
 					</Transition.Child>
 
 					<div className='fixed inset-0 overflow-hidden'>
@@ -86,7 +86,7 @@ export default function SideMenu() {
 																<SideMenuOptions
 																	key={category.id}
 																	name={category.name}
-																	link={`#${category.link}`}
+																	link={`/catalogo#${category.link}`}
 																/>
 															))}
 														</ul>

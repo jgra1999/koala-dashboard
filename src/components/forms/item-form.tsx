@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Button } from './button'
 import { Item } from '../../types/database'
 import { supabase } from '../../supabase/client.js'

@@ -1,5 +1,3 @@
-// import ActionButtons from './action-buttons'
-
 import { Link } from 'react-router-dom'
 import type { Item } from '../../../types/database'
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline'

@@ -11,6 +11,11 @@ module.exports = {
 	parser: '@typescript-eslint/parser',
 	plugins: ['react-refresh'],
 	rules: {
-		'react-refresh/only-export-components': ['warn', { allowConstantExport: true }]
+		'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+		'no-console': 'warn',
+		'no-unused-vars': 'warn',
+		'react/prop-types': 'off',
+		'react/react-in-jsx-scope': 'off',
+		'spaced-comment': 'off'
 	}
 }

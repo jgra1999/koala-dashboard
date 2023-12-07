@@ -19,5 +19,5 @@ export type Item = {
 export type Banner = {
 	id?: number
 	name: string
-	image_url: string
+	banner_url: string
 }

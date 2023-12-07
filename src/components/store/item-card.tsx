@@ -4,20 +4,15 @@ import { Dialog, Transition } from '@headlessui/react'
 import { ShoppingBagIcon } from '@heroicons/react/24/outline'
 import { Fragment, useState } from 'react'
 import { DeliveryIcon, WhatsAppIcon } from '../icons'
+import { Product } from '../../types/database'
 
 type Props = {
-	product: {
-		id: number
-		image: string
-		name: string
-		brand: string
-		price: number
-	}
+	product: Product
 }
 
 export function ItemCard({ product }: Props) {
 	const [isOpen, setIsOpen] = useState(false)
-	const [image, setImage] = useState(product.image)
+	const [image, setImage] = useState(product.image_url_1)
 
 	return (
 		<>
@@ -28,7 +23,7 @@ export function ItemCard({ product }: Props) {
 				<div>
 					<img
 						className='p-8 rounded-t-lg w-64 aspect-[350/550]'
-						src={product.image}
+						src={product.image_url_1}
 						alt='product image'
 					/>
 				</div>
@@ -84,11 +79,15 @@ export function ItemCard({ product }: Props) {
 											alt='product image'
 										/>
 										<div className='flex items-center gap-x-3'>
-											<button onClick={() => setImage(product.image)}>
-												<img src={product.image} alt='' className='w-[100px]' />
+											<button onClick={() => setImage(product.image_url_1)}>
+												<img
+													src={product.image_url_1}
+													alt=''
+													className='w-[100px]'
+												/>
 											</button>
-											<button onClick={() => setImage('./example/2.jpg')}>
-												<img src='./example/2.jpg' alt='' className='w-40' />
+											<button onClick={() => setImage(product.image_url_2)}>
+												<img src={product.image_url_2} alt='' className='w-40' />
 											</button>
 										</div>
 									</div>
