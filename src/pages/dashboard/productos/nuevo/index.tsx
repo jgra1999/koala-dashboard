@@ -11,7 +11,6 @@ export default function AddProductPage() {
 
 	const [file1, setFile1] = useState<File | null>(null)
 	const [file2, setFile2] = useState<File | null>(null)
-	// const [image1, setImage1] = useState('')
 	const [brands, setBrands] = useState<Item[]>([])
 	const [categories, setCategories] = useState<Item[]>([])
 	const [product, setProduct] = useState<Product>({
@@ -21,6 +20,7 @@ export default function AddProductPage() {
 		brand: '',
 		category: '',
 		price: 0,
+		discount: 0,
 		stock: 0,
 		description: ''
 	})
@@ -94,8 +94,6 @@ export default function AddProductPage() {
 
 			if (error) console.log(error)
 			if (data) console.log(data)
-
-			navigate('/dashboard')
 		} else {
 			try {
 				const { data, error } = await supabase.from('products').insert([
@@ -106,6 +104,7 @@ export default function AddProductPage() {
 						brand: product.brand,
 						category: product.category,
 						price: product.price,
+						discount: product.discount,
 						stock: product.stock,
 						description: product.description
 					}
@@ -113,14 +112,13 @@ export default function AddProductPage() {
 
 				if (error) console.log(error)
 				if (data) console.log(data)
-
-				navigate('/dashboard')
 			} catch (error) {
 				console.log('🚀 ~ file: index.tsx:76 ~ handleSubmit ~ error:', error)
 			}
 		}
 
-		// form.current?.reset()
+		form.current?.reset()
+		navigate('/dashboard')
 	}
 
 	const fetchBrands = async () => {
@@ -255,7 +253,7 @@ export default function AddProductPage() {
 					</div>
 				</div>
 
-				<label className='block text-sm font-medium text-gray-900 md:col-span-2'>
+				<label className='block text-sm font-medium text-gray-900'>
 					Nombre
 					<input
 						name='name'
@@ -311,6 +309,16 @@ export default function AddProductPage() {
 						className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 mt-2'
 						onChange={handleChange}
 						value={product.price}
+					/>
+				</label>
+				<label className='block mb-2 text-sm font-medium text-gray-900'>
+					Descuento
+					<input
+						name='discount'
+						type='number'
+						className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 mt-2'
+						onChange={handleChange}
+						value={product.discount}
 					/>
 				</label>
 

@@ -37,9 +37,22 @@ export function ItemCard({ product }: Props) {
 						</span>
 					</div>
 					<div className='flex items-center justify-between'>
-						<span className='font-semibold text-gray-900 text-lg'>
-							${product.price}
-						</span>
+						<div>
+							{product.discount !== undefined && product.discount > 0 ? (
+								<>
+									<span className='font-semibold text-gray-900 text-xl'>
+										${product.price - product.price * (product.discount / 100)}
+									</span>
+									<span className='font-semibold text-gray-400 ml-2 line-through'>
+										${product.price}
+									</span>
+								</>
+							) : (
+								<span className='font-semibold text-gray-900 text-xl'>
+									${product.price}
+								</span>
+							)}
+						</div>
 					</div>
 				</div>
 			</button>
@@ -87,7 +100,11 @@ export function ItemCard({ product }: Props) {
 												/>
 											</button>
 											<button onClick={() => setImage(product.image_url_2)}>
-												<img src={product.image_url_2} alt='' className='w-40' />
+												<img
+													src={product.image_url_2}
+													alt=''
+													className='w-[100px]'
+												/>
 											</button>
 										</div>
 									</div>
@@ -107,7 +124,22 @@ export function ItemCard({ product }: Props) {
 										</div>
 
 										<div>
-											<span className='font-medium text-2xl'>${product.price}</span>
+											{product.discount !== undefined && product.discount > 0 ? (
+												<>
+													<span className='font-medium text-3xl'>
+														$
+														{product.price -
+															product.price * (product.discount / 100)}
+													</span>
+													<span className='font-medium text-gray-400 ml-2 line-through'>
+														${product.price}
+													</span>
+												</>
+											) : (
+												<span className='font-medium text-2xl'>
+													${product.price}
+												</span>
+											)}
 										</div>
 
 										<Dialog.Description className='text-left text-sm'>

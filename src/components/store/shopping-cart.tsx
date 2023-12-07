@@ -1,5 +1,5 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useState } from 'react'
 
 import { ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
@@ -131,7 +131,7 @@ export function ShoppingCart() {
 												<div className='mt-6'>
 													{/* href='https://wa.me/584244155064?text=*PEDIDO:*%20*franela%20oversized*%0A*TOTAL%20A%20PAGAR:*%20*45$* */}
 													<button
-														onClick={() => handleSendOrder(currentWishlist)}
+														// onClick={() => handleSendOrder(currentWishlist)}
 														className='flex items-center justify-center rounded py-3 px-4 text-white font-semibold bg-primary active:bg-orange-600 lg:hover:bg-orange-600 w-full'
 													>
 														Realizar Pedido
