@@ -152,9 +152,7 @@ export function ItemCard({ product }: Props) {
 										</div>
 
 										<Dialog.Description className='text-left text-sm'>
-											Es un producto que ofrece monohidrato de creatina micronizada
-											de alta pureza, de rápida y total absorción. 100% monohidrato
-											de creatina micronizado con la garantía de Muscletech.
+											{product.description}
 										</Dialog.Description>
 
 										<div className='mt-4 flex items-center gap-x-5'>
