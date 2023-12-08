@@ -1,6 +1,8 @@
+import { useCartStore } from '../../store'
 import { CartItem } from '../../types/cart'
 
 export default function ShoppingCartItem({ product }: { product: CartItem }) {
+	const { removeToShoppingCart } = useCartStore()
 	return (
 		<li className='flex py-6'>
 			<div className='w-16 flex-shrink-0'>
@@ -20,7 +22,7 @@ export default function ShoppingCartItem({ product }: { product: CartItem }) {
 
 					<div className='flex'>
 						<button
-							type='button'
+							onClick={() => removeToShoppingCart(product)}
 							className='font-medium text-red-600 hover:text-red-500'
 						>
 							Eliminar

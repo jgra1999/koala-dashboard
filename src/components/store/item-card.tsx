@@ -1,5 +1,5 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { DeliveryIcon, WhatsAppIcon } from '../icons'
 import { Product } from '../../types/database'
 import AddCartButton from './add-cart-button'
@@ -12,6 +12,16 @@ type Props = {
 export function ItemCard({ product }: Props) {
 	const [isOpen, setIsOpen] = useState(false)
 	const [image, setImage] = useState(product.image_url_1)
+	const [finalPrice, setFinalPrice] = useState(product.price)
+
+	useEffect(() => {
+		if (product.discount) {
+			const priceWithDiscount =
+				product.price - product.price * (product.discount / 100)
+
+			setFinalPrice(priceWithDiscount)
+		}
+	}, [])
 
 	return (
 		<>
@@ -96,7 +106,7 @@ export function ItemCard({ product }: Props) {
 											src={image}
 											alt='product image'
 										/>
-										<div className='flex items-center gap-x-3'>
+										<div className='flex justify-start items-center gap-x-3 w-full'>
 											<button onClick={() => setImage(product.image_url_1)}>
 												<img
 													src={product.image_url_1}
@@ -131,19 +141,13 @@ export function ItemCard({ product }: Props) {
 										<div>
 											{product.discount !== undefined && product.discount > 0 ? (
 												<>
-													<span className='font-medium text-3xl'>
-														$
-														{product.price -
-															product.price * (product.discount / 100)}
-													</span>
+													<span className='font-medium text-3xl'>${finalPrice}</span>
 													<span className='font-medium text-gray-400 ml-2 line-through'>
 														${product.price}
 													</span>
 												</>
 											) : (
-												<span className='font-medium text-2xl'>
-													${product.price}
-												</span>
+												<span className='font-medium text-2xl'>${finalPrice}</span>
 											)}
 										</div>
 
@@ -163,7 +167,7 @@ export function ItemCard({ product }: Props) {
 												name={product.name}
 												image_url={product.image_url_1}
 												brand={product.brand}
-												price={product.price}
+												price={finalPrice}
 												qty={1}
 											/>
 										</div>

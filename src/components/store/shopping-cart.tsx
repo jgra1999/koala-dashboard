@@ -15,11 +15,11 @@ export function ShoppingCart() {
 	return (
 		<>
 			<button
-				className='flex items-start pr-2 gap-x-1'
+				className='flex  items-center pr-2 gap-x-2 text-bold'
 				onClick={() => setOpen(true)}
 			>
-				<span>2</span>
-				<ShoppingBagIcon className='w-6 h-6' />
+				<span className='text-secondary'>{cart.length}</span>
+				<ShoppingBagIcon className='w-6 h-6 stroke-2' />
 			</button>
 
 			<Transition.Root show={open} as={Fragment}>
@@ -90,10 +90,10 @@ export function ShoppingCart() {
 													<p>Subtotal</p>
 													<p>
 														$
-														{/* {currentWishlist.reduce(
-															(acumulado, item) => acumulado + item.price,
+														{cart.reduce(
+															(acumulado, product) => acumulado + product.price,
 															0
-														)} */}
+														)}
 													</p>
 												</div>
 												<div className='mt-6'>
