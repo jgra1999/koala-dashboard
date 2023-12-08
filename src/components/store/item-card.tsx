@@ -102,11 +102,11 @@ export function ItemCard({ product }: Props) {
 											<XMarkIcon className='w-7 h-7' />
 										</button>
 										<img
-											className='w-4/5 aspect-[350/550]'
+											className=' lg:w-4/5 aspect-[350/550]'
 											src={image}
 											alt='product image'
 										/>
-										<div className='flex justify-start items-center gap-x-3 w-full'>
+										<div className='flex justify-center lg:justify-start items-center gap-x-3 w-full'>
 											<button onClick={() => setImage(product.image_url_1)}>
 												<img
 													src={product.image_url_1}
@@ -156,7 +156,7 @@ export function ItemCard({ product }: Props) {
 										</Dialog.Description>
 
 										<div className='mt-4 flex items-center gap-x-5'>
-											<button className='inline-flex items-center justify-center gap-x-1.5 rounded-md border border-transparent bg-green-500 px-4 py-2 font-medium text-white active:bg-green-700 lg:hover:bg-green-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2'>
+											<button className='text-sm inline-flex items-center justify-center gap-x-1.5 rounded-md border border-transparent bg-green-500 px-4 py-2 font-medium text-white active:bg-green-700 lg:hover:bg-green-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2'>
 												<WhatsAppIcon styles='w-6 h-6' />
 												Escribir por WhatsApp
 											</button>
@@ -174,7 +174,7 @@ export function ItemCard({ product }: Props) {
 											<span className='text-sm font-medium text-zinc-400'>
 												Busca tu oficina de envíos:
 											</span>
-											<div className='flex items-center gap-x-5 mt-4'>
+											<div className='flex flex-wrap items-center gap-5 mt-4'>
 												<a
 													href='https://mrwve.com/'
 													target='_blank'

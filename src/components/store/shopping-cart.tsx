@@ -1,5 +1,5 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useState } from 'react'
 
 import { ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useCartStore } from '../../store'
@@ -9,9 +9,6 @@ export function ShoppingCart() {
 	const [open, setOpen] = useState(false)
 	const { cart } = useCartStore()
 
-	useEffect(() => {
-		console.log(cart)
-	}, [cart])
 	return (
 		<>
 			<button
