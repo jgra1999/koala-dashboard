@@ -1,10 +1,9 @@
-'use client'
-
 import { Dialog, Transition } from '@headlessui/react'
-import { ShoppingBagIcon } from '@heroicons/react/24/outline'
 import { Fragment, useState } from 'react'
 import { DeliveryIcon, WhatsAppIcon } from '../icons'
 import { Product } from '../../types/database'
+import AddCartButton from './add-cart-button'
+import { XMarkIcon } from '@heroicons/react/24/outline'
 
 type Props = {
 	product: Product
@@ -86,6 +85,12 @@ export function ItemCard({ product }: Props) {
 							>
 								<Dialog.Panel className='grid grid-cols-1 lg:grid-cols-2 w-full max-w-3xl transform overflow-hidden rounded-2xl bg-white p-6 shadow-xl transition-all'>
 									<div className='flex flex-col items-center'>
+										<button
+											className='absolute right-4 top-4'
+											onClick={() => setIsOpen(false)}
+										>
+											<XMarkIcon className='w-7 h-7' />
+										</button>
 										<img
 											className='w-4/5 aspect-[350/550]'
 											src={image}
@@ -96,14 +101,14 @@ export function ItemCard({ product }: Props) {
 												<img
 													src={product.image_url_1}
 													alt=''
-													className='w-[100px]'
+													className='w-36 md:w-[100px]'
 												/>
 											</button>
 											<button onClick={() => setImage(product.image_url_2)}>
 												<img
 													src={product.image_url_2}
 													alt=''
-													className='w-[100px]'
+													className='w-36 md:w-[100px]'
 												/>
 											</button>
 										</div>
@@ -153,9 +158,14 @@ export function ItemCard({ product }: Props) {
 												<WhatsAppIcon styles='w-6 h-6' />
 												Escribir por WhatsApp
 											</button>
-											<button className='inline-flex items-center justify-center gap-x-1.5 rounded-md border border-transparent bg-purple-500 px-4 py-2 font-medium text-white active:bg-purple-700 lg:hover:bg-purple-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2'>
-												<ShoppingBagIcon className='stroke-current stroke-2 w-6 h-6' />
-											</button>
+											<AddCartButton
+												id={product.id}
+												name={product.name}
+												image_url={product.image_url_1}
+												brand={product.brand}
+												price={product.price}
+												qty={1}
+											/>
 										</div>
 
 										<div className='mt-4 text-left'>
