@@ -20,8 +20,8 @@ export default function CatalogoPage() {
 		<main>
 			<header>
 				<img src='/banner.png' alt='' loading='lazy' className='aspect-[1519/728]' />
-				<Navbar />
 			</header>
+			<Navbar />
 			{categories.map((category) => (
 				<ProductSection
 					key={category.id}
