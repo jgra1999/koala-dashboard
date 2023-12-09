@@ -4,6 +4,7 @@ import { Fragment, useState } from 'react'
 import { ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useCartStore } from '../../store'
 import ShoppingCartItem from './shopping-cart-item'
+import { Link } from 'react-router-dom'
 
 export function ShoppingCart() {
 	const [open, setOpen] = useState(false)
@@ -94,13 +95,12 @@ export function ShoppingCart() {
 													</p>
 												</div>
 												<div className='mt-6'>
-													{/* href='https://wa.me/584244155064?text=*PEDIDO:*%20*franela%20oversized*%0A*TOTAL%20A%20PAGAR:*%20*45$* */}
-													<button
-														// onClick={() => handleSendOrder(currentWishlist)}
+													<Link
+														to='/checkout'
 														className='flex items-center justify-center rounded py-3 px-4 text-white font-semibold bg-primary active:bg-orange-600 lg:hover:bg-orange-600 w-full'
 													>
 														Realizar Pedido
-													</button>
+													</Link>
 												</div>
 											</div>
 										</div>

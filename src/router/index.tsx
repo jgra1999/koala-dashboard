@@ -14,6 +14,7 @@ import CatalogoPage from '../pages/catalogo'
 import BannersPage from '../pages/dashboard/banners'
 import EditBannerPage from '../pages/dashboard/banners/actualizar'
 import BannerViewPage from '../pages/dashboard/banners/overview'
+import CheckoutPage from '../pages/checkout'
 
 export const router = createHashRouter([
 	{
@@ -81,5 +82,10 @@ export const router = createHashRouter([
 	{
 		path: '/catalogo',
 		element: <CatalogoPage />
+	},
+	/* Checkout */
+	{
+		path: '/checkout',
+		element: <CheckoutPage />
 	}
 ])

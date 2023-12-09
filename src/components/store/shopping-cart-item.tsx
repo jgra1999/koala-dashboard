@@ -18,7 +18,7 @@ export default function ShoppingCartItem({ product }: { product: CartItem }) {
 					<p className='mt-1 text-sm text-gray-500'>{product.brand}</p>
 				</div>
 				<div className='flex flex-1 items-end justify-between text-sm'>
-					<p className='text-gray-500'>Qty {product.qty}</p>
+					<p className='text-gray-500'>Cantidad: {product.qty}</p>
 
 					<div className='flex'>
 						<button
