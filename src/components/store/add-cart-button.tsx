@@ -25,10 +25,6 @@ export default function AddCartButton({
 
 	useEffect(() => {
 		const searchItem = cart.find((i: CartItem) => i.id === id)
-		console.log(
-			'🚀 ~ file: add-cart-button.tsx:28 ~ useEffect ~ searchItem:',
-			searchItem
-		)
 		if (searchItem !== undefined) setIsAdded(true)
 	}, [])
 

@@ -3,7 +3,7 @@ import { Fragment, useEffect, useState } from 'react'
 import { DeliveryIcon, WhatsAppIcon } from '../icons'
 import { Product } from '../../types/database'
 import AddCartButton from './add-cart-button'
-import { XMarkIcon } from '@heroicons/react/24/outline'
+import { MinusIcon, PlusIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 type Props = {
 	product: Product
@@ -13,6 +13,7 @@ export function ItemCard({ product }: Props) {
 	const [isOpen, setIsOpen] = useState(false)
 	const [image, setImage] = useState(product.image_url_1)
 	const [finalPrice, setFinalPrice] = useState(product.price)
+	const [quantity, setQuantity] = useState(1)
 
 	useEffect(() => {
 		if (product.discount) {
@@ -27,7 +28,7 @@ export function ItemCard({ product }: Props) {
 		<>
 			<button
 				onClick={() => setIsOpen(true)}
-				className='group w-full max-w-xs bg-white border border-gray-200 rounded-lg shadow flex flex-col items-center'
+				className='group w-full max-w-xs bg-white border border-gray-200 rounded-lg shadow flex flex-col items-center relative'
 			>
 				<div>
 					<img
@@ -64,6 +65,13 @@ export function ItemCard({ product }: Props) {
 						</div>
 					</div>
 				</div>
+				{product.discount && product.discount > 0 ? (
+					<span className='bg-primary text-white font-medium px-1.5 py-3 absolute right-0 rounded-tr-md'>
+						{product.discount}%
+					</span>
+				) : (
+					''
+				)}
 			</button>
 
 			{/* Modal */}
@@ -155,25 +163,51 @@ export function ItemCard({ product }: Props) {
 											{product.description}
 										</Dialog.Description>
 
+										<div className='mt-4 text-left space-y-4'>
+											<h4 className='text-sm font-medium text-zinc-400'>
+												Cantidad:
+											</h4>
+											<div className='flex item-center gap-x-2 text-lg'>
+												<button
+													onClick={() => setQuantity(quantity - 1)}
+													disabled={quantity === 1}
+													className='border-2 border-zinc-400 text-zinc-400 active:text-secondary lg:hover:text-secondary active:border-secondary lg:hover:border-secondary py-1 px-1.5 rounded-md'
+												>
+													<MinusIcon className='w-5 h-5' />
+												</button>
+												{quantity}
+												<button
+													onClick={() => setQuantity(quantity + 1)}
+													className='border-2 border-zinc-400 text-zinc-400 active:text-secondary lg:hover:text-secondary active:border-secondary lg:hover:border-secondary py-1 px-1.5 rounded-md'
+												>
+													<PlusIcon className='w-5 h-5' />
+												</button>
+											</div>
+										</div>
+
 										<div className='mt-4 flex items-center gap-x-5'>
-											<button className='text-sm inline-flex items-center justify-center gap-x-1.5 rounded-md border border-transparent bg-green-500 px-4 py-2 font-medium text-white active:bg-green-700 lg:hover:bg-green-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2'>
+											<a
+												href={`https://wa.me/+584244354773/?text=Hola!%20me%20interesa%20la%20${product.name}`}
+												className='text-sm inline-flex items-center justify-center gap-x-1.5 rounded-md border border-transparent bg-green-500 px-4 py-2 font-medium text-white active:bg-green-700 lg:hover:bg-green-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2'
+												target='_blank'
+											>
 												<WhatsAppIcon styles='w-6 h-6' />
 												Escribir por WhatsApp
-											</button>
+											</a>
 											<AddCartButton
 												id={product.id}
 												name={product.name}
 												image_url={product.image_url_1}
 												brand={product.brand}
 												price={finalPrice}
-												qty={1}
+												qty={quantity}
 											/>
 										</div>
 
 										<div className='mt-4 text-left'>
-											<span className='text-sm font-medium text-zinc-400'>
+											<h4 className='text-sm font-medium text-zinc-400'>
 												Busca tu oficina de envíos:
-											</span>
+											</h4>
 											<div className='flex flex-wrap items-center gap-5 mt-4'>
 												<a
 													href='https://mrwve.com/'

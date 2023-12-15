@@ -21,7 +21,7 @@ export function ShoppingCart() {
 			</button>
 
 			<Transition.Root show={open} as={Fragment}>
-				<Dialog as='div' className='relative z-10' onClose={setOpen}>
+				<Dialog as='div' className='relative z-50' onClose={setOpen}>
 					<Transition.Child
 						as={Fragment}
 						enter='ease-in-out duration-500'
@@ -99,7 +99,7 @@ export function ShoppingCart() {
 														to='/checkout'
 														className='flex items-center justify-center rounded py-3 px-4 text-white font-semibold bg-primary active:bg-orange-600 lg:hover:bg-orange-600 w-full'
 													>
-														Realizar Pedido
+														Finalizar Pedido
 													</Link>
 												</div>
 											</div>
