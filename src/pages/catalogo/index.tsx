@@ -3,6 +3,7 @@ import { Navbar } from '../../components/store/navbar'
 import { ProductSection } from '../../components/store/product-section'
 import { Item } from '../../types/database'
 import { supabase } from '../../supabase/client'
+import { Slider } from '../../components/store/slider'
 
 export default function CatalogoPage() {
 	const [categories, setCategories] = useState<Item[]>([])
@@ -19,7 +20,7 @@ export default function CatalogoPage() {
 	return (
 		<main>
 			<header>
-				<img src='/banner.png' alt='' loading='lazy' className='aspect-[1519/728]' />
+				<Slider />
 			</header>
 			<Navbar />
 			{categories.map((category) => (

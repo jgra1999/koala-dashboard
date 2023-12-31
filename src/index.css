@@ -31,6 +31,10 @@ body {
 	background-color: #f3f3f3;
 }
 
+.swiper-pagination-bullet-active {
+	background-color: white !important ;
+}
+
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
