@@ -42,7 +42,7 @@ export default function CategoriesPage() {
 					Agregar Categoría
 				</Link>
 				<div className='relative overflow-x-auto shadow-md sm:rounded-lg mt-8'>
-					<ItemTable data={data} header={thead} tableName='brands' />
+					<ItemTable data={data} header={thead} tableName='categories' />
 					{data.length === 0 && (
 						<div className='text-center py-5'>
 							<h5 className='text-xl font-semibold'>No hay productos registrados</h5>

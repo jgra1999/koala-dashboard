@@ -87,6 +87,7 @@ export default function AddProductPage() {
 					brand: product.brand,
 					category: product.category,
 					price: product.price,
+					discount: product.discount,
 					stock: product.stock,
 					description: product.description
 				})

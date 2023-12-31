@@ -1,19 +1,27 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
 	ArrowLeftIcon,
 	BanknotesIcon,
 	CurrencyEuroIcon,
 	DevicePhoneMobileIcon
 } from '@heroicons/react/24/outline'
-import React, { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { BinanceIcon, ZelleIcon } from '../../components/icons'
 import { useCartStore } from '../../store'
 import ShoppingCartItem from '../../components/store/shopping-cart-item'
 import { Link } from 'react-router-dom'
 
 export default function CheckoutPage() {
-	const [paymentMethod, setPaymentMethod] = useState('')
-	// const methods = ['Efectivo', 'Zelle', 'Euros', 'Binance', 'Pago Móvil']
 	const { cart } = useCartStore()
+
+	const [paymentMethod, setPaymentMethod] = useState('')
+	const [clientInfo, setClientInfo] = useState({
+		name: '',
+		last_name: '',
+		city: '',
+		address: ''
+	})
+
 	const methods = [
 		{
 			name: 'Efectivo',
@@ -37,26 +45,61 @@ export default function CheckoutPage() {
 		}
 	]
 
-	const handlePaymentMethod = (e: React.MouseEvent<HTMLButtonElement>) => {
-		// console.log(e.target.innerText)
+	const handleChange = (
+		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+	) => {
+		const { name, value } = e.target
+		setClientInfo({ ...clientInfo, [name]: value })
+	}
+
+	const handlePaymentMethod = (e: any) => {
 		setPaymentMethod(e.target.innerText)
 	}
+
+	const handleSendOrder = () => {
+		const order = cart.map((item) => ' ' + item.name + ' x' + item.qty + ' ')
+		const totalToPay = cart.reduce(
+			(acumulado, product) => acumulado + product.price,
+			0
+		)
+		const { name, last_name, city, address } = clientInfo
+
+		const full_name = name + ' ' + last_name
+
+		const url =
+			'https://wa.me/+584244354773?text=*CLIENTE*: ' +
+			full_name +
+			'%0A *MÉTODO DE PAGO*: ' +
+			paymentMethod +
+			'%0A *DIRECCIÓN*: ' +
+			address +
+			'%0A *CIUDAD*: ' +
+			city +
+			'%0A *PEDIDO*: ' +
+			order +
+			'%0A *TOTAL A PAGAR*: ' +
+			totalToPay +
+			'$'
+
+		window.open(url)
+	}
+
+	useEffect(() => {
+		window.scrollTo({ top: 0, behavior: 'smooth' })
+	}, [])
 
 	return (
 		<main>
 			<header>
 				<nav className='flex justify-between items-center py-3 px-5 bg-white shadow sticky top-0'>
-					<a href='/#/catalogo'>
+					<Link to='/catalogo'>
 						<ArrowLeftIcon className='w-6 h-6 stroke-2 active:stroke-primary lg:hover:stroke-primary' />
-					</a>
+					</Link>
 					<img src='/logo-simple.png' alt='logo koala' className='w-32' />
 				</nav>
 			</header>
-			{/* <div className='text-center py-20 border-b-2 border-primary'>
-				<h1 className='text-6xl font-semibold'>Finalizar Compra</h1>
-			</div> */}
 
-			<div className='mt-10 mb-20 px-10 grid grid-cols-1 md:grid-cols-2 gap-x-5'>
+			<div className='mt-10 mb-20 px-8 lg:px-20 grid grid-cols-1 md:grid-cols-2 gap-10'>
 				<div>
 					<h2 className='text-2xl md:text-3xl font-bold'>
 						Información del contacto
@@ -68,6 +111,7 @@ export default function CheckoutPage() {
 								Nombre
 							</label>
 							<input
+								onChange={handleChange}
 								type='text'
 								name='name'
 								id='name'
@@ -79,6 +123,7 @@ export default function CheckoutPage() {
 								Apellido
 							</label>
 							<input
+								onChange={handleChange}
 								type='text'
 								name='last_name'
 								id='last_name'
@@ -90,6 +135,7 @@ export default function CheckoutPage() {
 								Ciudad
 							</label>
 							<input
+								onChange={handleChange}
 								type='text'
 								name='city'
 								id='city'
@@ -101,6 +147,7 @@ export default function CheckoutPage() {
 								Dirección
 							</label>
 							<textarea
+								onChange={handleChange}
 								name='address'
 								id='address'
 								rows={3}
@@ -151,12 +198,12 @@ export default function CheckoutPage() {
 								</p>
 							</div>
 							<div className='mt-6'>
-								<Link
-									to='/checkout'
+								<button
+									onClick={handleSendOrder}
 									className='flex items-center justify-center rounded py-3 px-4 text-white font-semibold bg-primary active:bg-orange-600 lg:hover:bg-orange-600 w-full'
 								>
 									Realizar Pedido
-								</Link>
+								</button>
 							</div>
 						</div>
 					</div>

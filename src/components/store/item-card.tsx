@@ -77,7 +77,7 @@ export function ItemCard({ product }: Props) {
 			{/* Modal */}
 
 			<Transition appear show={isOpen} as={Fragment}>
-				<Dialog as='div' className='relative z-10' onClose={() => setIsOpen(false)}>
+				<Dialog as='div' className='relative z-40' onClose={() => setIsOpen(false)}>
 					<Transition.Child
 						as={Fragment}
 						enter='ease-out duration-300'
@@ -110,23 +110,23 @@ export function ItemCard({ product }: Props) {
 											<XMarkIcon className='w-7 h-7' />
 										</button>
 										<img
-											className=' lg:w-4/5 aspect-[350/550]'
+											className=' lg:w-4/5 max-w-[180px] lg:max-w-[240px] aspect-[350/550]'
 											src={image}
 											alt='product image'
 										/>
-										<div className='flex justify-center lg:justify-start items-center gap-x-3 w-full'>
+										<div className='flex justify-around lg:justify-start items-center gap-x-3 w-full'>
 											<button onClick={() => setImage(product.image_url_1)}>
 												<img
 													src={product.image_url_1}
 													alt=''
-													className='w-36 md:w-[100px]'
+													className='w-28 md:w-[100px]'
 												/>
 											</button>
 											<button onClick={() => setImage(product.image_url_2)}>
 												<img
 													src={product.image_url_2}
 													alt=''
-													className='w-36 md:w-[100px]'
+													className='w-28 md:w-[100px]'
 												/>
 											</button>
 										</div>

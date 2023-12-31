@@ -8,29 +8,56 @@ import { ProductsTable } from '../../components/dashboard/tables/products-table'
 
 export default function DashboardPage() {
 	const [data, setData] = useState<Product[]>([])
+	const [searchInput, setSearchInput] = useState('')
 
 	const fetchProducts = async () => {
-		const { data, error } = await supabase.from('products').select('*')
+		if (searchInput) {
+			const { data, error } = await supabase
+				.from('products')
+				.select('*')
+				.like('name', `%${searchInput}%`)
 
-		if (error) console.log(error)
+			if (error) console.log(error)
 
-		if (data) setData(data)
+			if (data) setData(data)
+		} else {
+			const { data, error } = await supabase.from('products').select('*')
+			if (error) console.log(error)
+
+			if (data) setData(data)
+		}
+	}
+
+	const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const { value } = e.target
+		setSearchInput(value.toUpperCase())
 	}
 
 	useEffect(() => {
 		fetchProducts()
-	}, [])
+	}, [searchInput])
 
 	return (
 		<Layout>
 			<h1 className='text-4xl md:text-5xl font-medium'>Tabla de Productos</h1>
 			<div className='mt-20'>
-				<Link
-					to='productos/nuevo'
-					className='text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg px-5 py-2.5 me-2 mb-2 focus:outline-none'
-				>
-					Agregar Producto
-				</Link>
+				<div className='flex justify-between flex-wrap gap-y-2'>
+					<Link
+						to='productos/nuevo'
+						className='text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg px-5 py-2.5 me-2 mb-2 focus:outline-none'
+					>
+						Agregar Producto
+					</Link>
+
+					<div>
+						<input
+							type='text'
+							className='w-80 md:w-96 bg-white rounded-lg border border-zinc-400 focus:border-primary outline-none focus:outline-none'
+							placeholder='Buscar Producto...'
+							onChange={handleSearchChange}
+						/>
+					</div>
+				</div>
 				<div className='relative overflow-x-auto shadow-md sm:rounded-lg mt-8'>
 					<ProductsTable products={data} />
 					{data.length === 0 && (
