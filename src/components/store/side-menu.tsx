@@ -77,17 +77,17 @@ export function SideMenu() {
 												<div className='mt-16'>
 													<div className='flow-root'>
 														<ul role='list' className='-my-6 space-y-2'>
-															{/* <SideMenuOptions name='Home' link='/' />
-															<SideMenuOptions name='Tienda' link='/tienda' />
-															<SideMenuOptions name='FAQ' link='/' />
-															<SideMenuOptions name='Contacto' link='/contacto' />
-															<SideMenuOptions name='Iniciar sesión' link='/login' /> */}
 															{data.map((category) => (
-																<SideMenuOptions
+																<li
 																	key={category.id}
-																	name={category.name}
-																	link={`#${category.link}`}
-																/>
+																	onClick={() => setOpen(false)}
+																	className='flex items-center p-2'
+																>
+																	<SideMenuOptions
+																		name={category.name}
+																		link={`#${category.link}`}
+																	/>
+																</li>
 															))}
 														</ul>
 													</div>
