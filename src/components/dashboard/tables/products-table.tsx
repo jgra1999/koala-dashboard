@@ -38,7 +38,7 @@ export function ProductsTable({ products }: { products: Product[] }) {
 							{product.name}
 						</th>
 						<td className='px-6 py-4'>
-							<img src={product.image_url_1} alt='' className='w-8' />
+							<img src={product.image_url_1} alt='' loading='lazy' className='w-8' />
 						</td>
 						<td className='px-6 py-4'>{product.stock}</td>
 						<td className='px-6 py-4'>{product.category}</td>

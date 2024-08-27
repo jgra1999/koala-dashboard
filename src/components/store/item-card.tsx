@@ -35,6 +35,7 @@ export function ItemCard({ product }: Props) {
 						className='p-8 rounded-t-lg w-64 aspect-[350/550]'
 						src={product.image_url_1}
 						alt='product image'
+						loading='lazy'
 					/>
 				</div>
 				<div className='px-5 pb-5 space-y-4 w-full'>
@@ -47,27 +48,35 @@ export function ItemCard({ product }: Props) {
 						</span>
 					</div>
 					<div className='flex items-center justify-between'>
-						<div>
-							{product.discount !== undefined && product.discount > 0 ? (
-								<>
+						{product.stock > 0 ? (
+							<div>
+								{product.discount !== undefined && product.discount > 0 ? (
+									<>
+										<span className='font-semibold text-gray-900 text-xl'>
+											${product.price - product.price * (product.discount / 100)}
+										</span>
+										<span className='font-semibold text-gray-400 ml-2 line-through'>
+											${product.price}
+										</span>
+									</>
+								) : (
 									<span className='font-semibold text-gray-900 text-xl'>
-										${product.price - product.price * (product.discount / 100)}
-									</span>
-									<span className='font-semibold text-gray-400 ml-2 line-through'>
 										${product.price}
 									</span>
-								</>
-							) : (
-								<span className='font-semibold text-gray-900 text-xl'>
-									${product.price}
+								)}
+							</div>
+						) : (
+							<div>
+								<span className='font-bold text-primary text-sm'>
+									Fuera de Stock
 								</span>
-							)}
-						</div>
+							</div>
+						)}
 					</div>
 				</div>
 				{product.discount && product.discount > 0 ? (
 					<span className='bg-primary text-white font-medium px-1.5 py-3 absolute right-0 rounded-tr-md'>
-						{product.discount}%
+						- {product.discount}%
 					</span>
 				) : (
 					''
@@ -113,6 +122,7 @@ export function ItemCard({ product }: Props) {
 											className=' lg:w-4/5 max-w-[180px] lg:max-w-[240px] aspect-[350/550]'
 											src={image}
 											alt='product image'
+											loading='lazy'
 										/>
 										<div className='flex justify-around lg:justify-start items-center gap-x-3 w-full'>
 											<button onClick={() => setImage(product.image_url_1)}>
@@ -120,6 +130,7 @@ export function ItemCard({ product }: Props) {
 													src={product.image_url_1}
 													alt=''
 													className='w-28 md:w-[100px]'
+													loading='lazy'
 												/>
 											</button>
 											<button onClick={() => setImage(product.image_url_2)}>
@@ -194,14 +205,16 @@ export function ItemCard({ product }: Props) {
 												<WhatsAppIcon styles='w-6 h-6' />
 												Escribir por WhatsApp
 											</a>
-											<AddCartButton
-												id={product.id}
-												name={product.name}
-												image_url={product.image_url_1}
-												brand={product.brand}
-												price={finalPrice}
-												qty={quantity}
-											/>
+											{product.stock > 0 && (
+												<AddCartButton
+													id={product.id}
+													name={product.name}
+													image_url={product.image_url_1}
+													brand={product.brand}
+													price={finalPrice}
+													qty={quantity}
+												/>
+											)}
 										</div>
 
 										<div className='mt-4 text-left'>

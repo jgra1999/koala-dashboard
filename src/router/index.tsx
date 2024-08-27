@@ -1,8 +1,8 @@
-// import { createHashRouter } from 'react-router-dom'
-import { createBrowserRouter } from 'react-router-dom'
+import { createHashRouter } from 'react-router-dom'
+// import { createBrowserRouter } from 'react-router-dom'
 
-import App from '../pages/App'
-import MantenimientoPage from '../pages/mantenimiento'
+// import App from '../pages/App'
+// import MantenimientoPage from '../pages/mantenimiento'
 import DashboardPage from '../pages/dashboard'
 import ProductOverview from '../pages/dashboard/productos'
 import BrandsPage from '../pages/dashboard/marcas'
@@ -11,21 +11,22 @@ import EditBrandPage from '../pages/dashboard/marcas/editar'
 import CategoriesPage from '../pages/dashboard/categorias'
 import AddCategoriesPage from '../pages/dashboard/categorias/nueva'
 import AddProductPage from '../pages/dashboard/productos/nuevo'
-import CatalogoPage from '../pages/catalogo'
+// import CatalogoPage from '../pages/catalogo'
 import BannersPage from '../pages/dashboard/banners'
 import EditBannerPage from '../pages/dashboard/banners/actualizar'
 import BannerViewPage from '../pages/dashboard/banners/overview'
-import CheckoutPage from '../pages/checkout'
+// import CheckoutPage from '../pages/checkout'
+import LoginPage from '../pages/login'
 
-export const router = createBrowserRouter([
-	{
-		path: '/',
-		element: <App />
-	},
-	{
-		path: '/mantenimiento',
-		element: <MantenimientoPage />
-	},
+export const router = createHashRouter([
+	// {
+	// 	path: '/',
+	// 	element: <App />
+	// },
+	// {
+	// 	path: '/mantenimiento',
+	// 	element: <MantenimientoPage />
+	// },
 	/* Dashboard */
 	{
 		path: '/dashboard',
@@ -80,13 +81,22 @@ export const router = createBrowserRouter([
 		element: <BannerViewPage />
 	},
 	/* Catalogo */
-	{
-		path: '/catalogo',
-		element: <CatalogoPage />
-	},
+	// {
+	// 	path: '/catalogo',
+	// 	element: <CatalogoPage />
+	// },
 	/* Checkout */
+	// {
+	// 	path: '/checkout',
+	// 	element: <CheckoutPage />
+	// },
+	/* Login */
+	// {
+	// 	path: '/login',
+	// 	element: <LoginPage />
+	// },
 	{
-		path: '/checkout',
-		element: <CheckoutPage />
+		path: '/',
+		element: <LoginPage />
 	}
 ])

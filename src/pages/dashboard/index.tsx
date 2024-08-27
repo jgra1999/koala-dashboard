@@ -52,7 +52,7 @@ export default function DashboardPage() {
 					<div>
 						<input
 							type='text'
-							className='w-80 md:w-96 bg-white rounded-lg border border-zinc-400 focus:border-primary outline-none focus:outline-none'
+							className='w-80 md:w-96 p-2 bg-white rounded-lg border border-zinc-400 focus:border-primary outline-none focus:outline-none'
 							placeholder='Buscar Producto...'
 							onChange={handleSearchChange}
 						/>

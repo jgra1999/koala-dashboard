@@ -6,8 +6,8 @@ import Layout from '../../../../ui/layout'
 import axios from 'axios'
 
 export default function AddProductPage() {
-	const cloudName = 'ddhmvrzqf'
-	const preset_key = 'zokammna'
+	const cloudName = import.meta.env.VITE_ClOUDINARY_CLOUDNAME
+	const preset_key = import.meta.env.VITE_ClOUDINARY_PRESET_KEY
 
 	const [file1, setFile1] = useState<File | null>(null)
 	const [file2, setFile2] = useState<File | null>(null)
